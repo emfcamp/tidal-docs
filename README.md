@@ -18,6 +18,8 @@ TODO: [API docs](gpio.md)
 
 TODO: Expansion developer guide
 
+TODO: Badge-compatible installation developer guide
+
 TODO: Badge firmware developer guide
 
 TODO: Sponsors

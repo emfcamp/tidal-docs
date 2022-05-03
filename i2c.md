@@ -88,15 +88,44 @@ initialse settings to 2G, 1024Hz bandwidth
 >>> i2c.writeto_mem(18, 0x10,  b'\x05')
 ```
 
-do a simple read of the x/y/z acceleration values:
+full example application:
 
 ```
->>> i2c.writeto_mem(18, 0x11, b'\xc0')
->>> bytes = i2c.readfrom_mem(18, 1, 6)
->>> x = (bytes[0] >> 2) | (bytes[1] << 6)
->>> y = (bytes[2] >> 2) | (bytes[3] << 6)
->>> z = (bytes[4] >> 2) | (bytes[5] << 6)
->>> print("{} {} {}".format(x, y, z))
+## QMA7981 accelerometer example code
+
+from tidal import i2c
+import time
+import ustruct
+
+# reset
+i2c.writeto_mem(18, 0x36, b'\xb6')
+time.sleep(0.2)
+i2c.writeto_mem(18, 0x36, b'\x00')
+
+## todo check post reset state
+
+# power up, set to 4G, 1024Hz bandwidth
+scale = 4
+i2c.writeto_mem(18, 0x11, b'\xc1')
+i2c.writeto_mem(18, 0xf,  b'\x01')
+i2c.writeto_mem(18, 0x10,  b'\x05')
+
+def read_val(bytes):
+    if ((bytes[0] & 1) == 0):
+        return 0
+    raw = ustruct.unpack("<h", bytes)[0]
+    raw = raw >> 2
+    return (raw * scale)/ (1 << 13);
+
+while True:
+    rawdata = i2c.readfrom_mem(18, 1, 6)
+    x = read_val(rawdata[0:2])
+    y = read_val(rawdata[2:4])
+    z = read_val(rawdata[4:6])
+
+
+    print("X {} Y {} Z {} RAW {}".format(x,y,z,rawdata))
+    time.sleep_ms(200)
 ```
 
 ## QMC7983
@@ -122,6 +151,54 @@ read all the data registers
 >>> print("{}".format(bytes))
 b'\xd8\x07\x19\n\x8e_\x00\xfe'                                                   
 ```
+
+full example application:
+```
+## QMA7983 demonstration code
+
+from tidal import i2c
+import time
+import ustruct
+
+i2c.writeto_mem(44, 0xb, b'\x0f')
+
+# initialise depending on scale
+scale = 8
+if (scale == 16):
+    i2c.writeto_mem(44, 0x9, b'\x3d')
+if (scale == 12):
+    i2c.writeto_mem(44, 0x9, b'\x2d')
+if (scale == 8):
+    i2c.writeto_mem(44, 0x9, b'\x1d')
+if (scale == 2):
+    i2c.writeto_mem(44, 0x9, b'\x0d')
+
+# for some reason from_bytes is ignoring sign
+def read_val(bytes):
+    return (ustruct.unpack("<h", bytes)[0] / 32768) * scale
+
+while True:
+    # read register 6 bit 0 to check for ready
+
+    byte = i2c.readfrom_mem(44, 6, 1);
+    if ((byte[0] & 2) != 0):
+        print("overflow occured", byte[0])
+    
+    if ((byte[0] & 1) != 0):
+        rawdata = i2c.readfrom_mem(44, 0, 6)
+        rawtemp = i2c.readfrom_mem(44, 7, 2)
+
+        x = read_val(rawdata[0:2])
+        y = read_val(rawdata[2:4])
+        z = read_val(rawdata[4:6])
+        t = int.from_bytes(rawtemp, 'little', True)
+
+        print("X {} Y {} Z {} Temperature {}".format(x, y, z, t))
+
+    time.sleep_ms(200)
+    
+```
+
 
 
 
