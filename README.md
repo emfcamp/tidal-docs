@@ -2,9 +2,9 @@
 
 ![The TiDAL device](/images/tidal-edgeview.png)
 
-[Getting to know TiLDA](boarddescription.md)
+[Getting to know TiDAL](boarddescription.md)
 
-[Photos of TiLDA](pictures.md)
+[Photos of TiDAL](pictures.md)
 
 [App developer guide](AppQuickstart.md)
 
