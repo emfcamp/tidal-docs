@@ -1,0 +1,35 @@
+# Renders of TiDAL with artwork:
+![render](/images/tidal-edgeview.png)
+![render](/images/tidal-full.png)
+![render](/images/tidal-top-front.png)
+![render](/images/tidal-top-reverse.png)
+![render](/images/tidal-bot-front.png)
+![render](/images/tidal-bot-reverse.png)
+![render](/images/tidal-bot-3d-front.png)
+![render](/images/tidal-top-3d-front.png)
+![render](/images/tidal-top-3d-reverse.png)
+
+# Photos of the initial TiDAL prototypes:
+![render](/images/tidal-proto-battery.JPG)
+![render](/images/tidal-proto-handheld.jpg)
+![render](/images/tidal-proto-long.jpg)
+![render](/images/tidal-proto-usbside.jpg)
+
+# Detailed microscope photos of the electronics (for help with rework and part identification)
+![render](/images/tidal-detail-27.jpg)
+![render](/images/tidal-detail-28.jpg)
+![render](/images/tidal-detail-29.jpg)
+![render](/images/tidal-detail-30.jpg)
+![render](/images/tidal-detail-31.jpg)
+![render](/images/tidal-detail-32.jpg)
+![render](/images/tidal-detail-33.jpg)
+![render](/images/tidal-detail-34.jpg)
+
+# Other photos from prototyping
+![photo](/images/IMG_1515.JPG)
+![photo](/images/IMG_1516.JPG)
+![photo](/images/IMG_1517.JPG)
+![photo](/images/IMG_1518.JPG)
+![photo](/images/IMG_1519.JPG)
+![photo](/images/IMG_1522.JPG)
+![photo](/images/IMG_1523.JPG)

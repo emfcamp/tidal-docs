@@ -37,6 +37,10 @@ but.on_pressed(JOY_CENTRE, lambda pin: print("Button pressed!"))
 
 **TODO instantiate a Buttons in App**
 
+### I2C
+
+[I2C Docs here](i2c.md)
+
 ### Display
 
 The `display` object is how you write to the screen. It is a [`ST7789`](st7788/README.md) object. The display is configured in portrait by default, and is 135x240 pixels supporting 16-bit colour. Several bitmap fonts are included. Using the default 8x8 font means you have room for 16x30 characters (or 16x26 if you leave a 1 pixel gap between lines)
