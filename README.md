@@ -18,6 +18,10 @@ TODO: [API docs](gpio.md)
 
 TODO: Expansion developer guide
 
+[TiDAL firmware repo](https://github.com/emfcamp/TiDAL-Firmware)
+
+TODO: TiDAL hardware repo
+
 TODO: Badge-compatible installation developer guide
 
 TODO: Badge firmware developer guide
