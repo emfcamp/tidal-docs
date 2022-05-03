@@ -8,7 +8,9 @@
 
 [App developer guide](AppQuickstart.md)
 
-TODO: Hardware details(hardwaredetails.md)
+TODO: [Install Apps from the Hatchery](hatchery.md)
+
+TODO: [Hardware details](hardwaredetails.md)
 
 [Schematic of bottom board](schematics/tidal-bot.pdf)
 

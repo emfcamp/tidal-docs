@@ -116,3 +116,6 @@ $ minicom -D /dev/tty.usbmodem1234561
 >>> import myapp
 >>> myapp.main()
 ```
+
+## Publishing to the Hatchery
+TODO: 
