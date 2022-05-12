@@ -22,9 +22,9 @@ scan the i2c bus for devices:
 
 ```
 >>> i2c.scan()                                                                   
-[18, 44, 100]                                                                     
+[18, 44, 54]                                                                     
 ```
-There should be three devices show, 18 is the QMA7981 accelerometer, 44 is the QMC7983 magnetic sensor and 100 is the cryptography chip
+There should be three devices show, 18 is the QMA7981 accelerometer, 44 is the QMC7983 magnetic sensor and 54 is the cryptography chip
 
 
 or, for the peripheral i2c:
