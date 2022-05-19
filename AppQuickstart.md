@@ -72,6 +72,8 @@ TextWindow may be instantiated separately, or your `App` subclass may construct 
 
 `ST7789` and `TextWindow` etc define colours in 16-bit 565 format - you can translate from RGB using the `color565(r, g, b)` helper function, which for convenience is imported into the `tidal` module along with some common colours like `BLACK`, `BLUE` etc.
 
+The native character set used by `ST7789` is [CP437](https://en.wikipedia.org/wiki/Code_page_437) so only a limited set of non-ASCII characters can be displayed. `TextWindow` takes care of converting Python strings to the appropriate format, so you normally shouldn't have to worry about it.
+
 ### Timers
 
 Use `App.after(time_ms, callback)` to queue a timer callback after a certain amount of milliseconds. The result is an object you can call `cancel()` on if you need to cancel the timer. These timers will wake the badge up from light sleep if necessary. Use `App.periodic()` if you want the timer to fire repeatedly. There are no restrictions on how many timers you can queue, unlike if you use `machine.Timer` which is not recommended because it's a much more complicated and nuanced API to use correctly.
@@ -148,7 +150,7 @@ class MyApp(TextApp):
 
 Your `App` object is instantiated by the scheduler when your app is launched (init is called with no arguments). Apps are expected to construct at least one window (generally, a subclass of `TextWindow`) and an associated `Buttons` instance.
 
-Prior to being displayed for the first time, `on_start()` is called. If overriding, you must call `super().on_start()`. Any initial `window` or `buttons` should normally be set up by the time of the `App.on_start()` call, therefore a common pattern is to construct the initial window (but not draw to it) in the constructor (for example `TextApp` does this, see [app.py](https://github.com/emfcamp/TiDAL-Firmware/blob/main/modules/app.py)) or immediately prior to the `super().on_start()` call.
+Prior to being displayed for the first time, `on_start()` is called. If overriding, you must call `super().on_start()`. Any initial `window` or `buttons` should normally be constructed by the time of the `App.on_start()` call, therefore a common pattern is to construct the initial window (but not draw to it) in the constructor (for example `TextApp` does this, see [app.py](https://github.com/emfcamp/TiDAL-Firmware/blob/main/modules/app.py)) or immediately prior to the `super().on_start()` call.
 
 Because `on_start()` is called exactly once, is a good place to declare any buttons callbacks you want to have - the app switching logic takes care of switching the active `Buttons` instance, so you don't have to worry about unregistering callbacks when your app deactivates or exits.
 
@@ -202,6 +204,30 @@ class MyApp(MenuApp):
 `MenuApp` takes care of registering the appropriate `Button` callbacks such that the joystick can be used to navigate and select the menu items.
 
 If desired you can omit defining `CHOICES` and instead populate the choices dynamically by calling `self.window.set_choices(...)` in `on_start()` or `on_activate()`. Remember to pass `redraw=False` if calling `set_choices()` from on_start, as drawing should not be done before `on_activate()`.
+
+### micro-gui
+
+In addition to `TextWindow` based Apps, [micropython-micro-gui](https://github.com/peterhinch/micropython-micro-gui) (aka 'ugui') is also available. This is a higher level, widget-based UI framework. To use it, declare a class inheriting from `UguiApp` and set the `ROOT_SCREEN` member to the initial `Screen` to be displayed. `UgiApp` takes care of most of the integration of micro-gui with the TiDAL app framework, including button handling, app switching and power management. See the link above for more info on how to use micro-gui.
+
+```python
+from uguiapp import UguiApp, Screen, ssd
+from gui.widgets import Label
+from gui.core.writer import CWriter
+import gui.fonts.arial10 as arial10
+from gui.core.colors import *
+
+class MyScreen(Screen):
+    def __init__(self):
+        super().__init__()
+        wri = CWriter(ssd, arial10, GREEN, BLACK, verbose=True)
+        Label(wri, 0, 0, "Hello world")
+
+class uGUIDemo(UguiApp):
+    ROOT_SCREEN = MyScreen
+
+```
+
+Up/down/left/right/select and the back button are automatically configured, although micro-gui has no built-in support for the A or B buttons. Call `App.on_press()` to use them.
 
 ## Testing on badge
 
