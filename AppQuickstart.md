@@ -231,6 +231,12 @@ Up/down/left/right/select and the back button are automatically configured, alth
 
 ## Testing on badge
 
+### WebSerial
+WebSerial Editor can be found at
+http://editor.badge.emfcamp.org/
+
+
+### REPL
 The micropython REPL is available by default on the USB port, eg `screen /dev/ttyUSB0 115200` or `minicom -D /dev/tty.usbmodem1234561` (depending on OS etc)
 
 Prior to deploying apps for real, you can upload files to the board using `pyboard.py` and then test them via the REPL:
@@ -249,4 +255,6 @@ $ minicom -D /dev/tty.usbmodem1234561
 ```
 
 ## Publishing to the Hatchery
-TODO: 
+
+http://2022.badge.emfcamp.org/
+See [Hatchery](hatchery.md)
