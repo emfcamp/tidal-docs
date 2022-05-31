@@ -2,7 +2,7 @@
 
 ## Intro
 
-Apps are written in [MicroPython](https://docs.micropython.org/en/latest/index.html). TiDAL specific definitions are in [`tidal.py`](modules/tidal.py):
+Apps are written in [MicroPython](https://docs.micropython.org/en/latest/index.html). TiDAL specific definitions are in [`tidal.py`](https://github.com/emfcamp/TiDAL-Firmware/blob/main/modules/tidal.py):
 
 ```python
 from tidal import *
@@ -37,7 +37,7 @@ but.on_pressed(JOY_CENTRE, lambda: print("Button pressed!"))
 
 A `Buttons` instance is automatically created for you by `App` subclasses - call `self.buttons` (or `self.window.buttons`) in your `App` to access it. See [`Torch.on_start()`](https://github.com/emfcamp/TiDAL-Firmware/blob/main/modules/torch/__init__.py) for an example.
 
-`buttons.py` also exposes the a static API compatible with [BADGE.TEAM](https://docs.badge.team/esp32-app-development/api-reference/buttons/), but since this is not app-aware it is recommended to use a `Buttons` instance instead.
+`buttons.py` also exposes the a static API compatible with [BADGE.TEAM](https://badge.team/docs/esp32-platform-firmware/esp32-app-development/api-reference/buttons/), but since this is not app-aware it is recommended to use a `Buttons` instance instead.
 
 ### I2C
 
@@ -45,7 +45,7 @@ A `Buttons` instance is automatically created for you by `App` subclasses - call
 
 ### Display
 
-The `display` object is how you write to the screen. It is a [`ST7789`](st7788/README.md) object. The display is configured in portrait by default, and is 135x240 pixels supporting 16-bit colour. Several bitmap fonts are included. Using the default 8x8 font means you have room for 16x30 characters (or 16x26 if you leave a 1 pixel gap between lines, which is the default used by `TextWindow`).
+The `display` object is how you write to the screen. It is a [`ST7789`](https://github.com/russhughes/st7789_mpy/blob/master/README.md) object. The display is configured in portrait by default, and is 135x240 pixels supporting 16-bit colour. Several bitmap fonts are included. Using the default 8x8 font means you have room for 16x30 characters (or 16x26 if you leave a 1 pixel gap between lines, which is the default used by `TextWindow`).
 
 ```python
 from tidal import *
@@ -112,7 +112,7 @@ else:
     print("Connection failed!")
 ```
 
-This module is compatible with the [BADGE.TEAM API](https://docs.badge.team/esp32-app-development/api-reference/wifi/)
+This module is compatible with the [BADGE.TEAM API](https://badge.team/docs/esp32-platform-firmware/esp32-app-development/api-reference/wifi/)
 
 Having Wi-Fi connected has a significant impact on battery life. Do not connect unless your app really needs network access, and disconnect as soon as is practical.
 
@@ -237,7 +237,7 @@ http://editor.badge.emfcamp.org/
 
 
 ### REPL
-The micropython REPL is available by default on the USB port, eg `screen /dev/ttyUSB0 115200` or `minicom -D /dev/tty.usbmodem1234561` (depending on OS etc)
+The MicroPython REPL is available by default on the USB port, eg `screen /dev/ttyUSB0 115200` or `minicom -D /dev/tty.usbmodem1234561` (depending on OS etc)
 
 Prior to deploying apps for real, you can upload files to the board using `pyboard.py` and then test them via the REPL:
 
@@ -257,4 +257,5 @@ $ minicom -D /dev/tty.usbmodem1234561
 ## Publishing to the Hatchery
 
 http://2022.badge.emfcamp.org/
+
 See [Hatchery](hatchery.md)
