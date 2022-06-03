@@ -132,6 +132,8 @@ To allow for apps to include resources or other modules, each app should be in a
 
 Apps should inherit from `app.App` or one of its subclasses. The example below uses `TextApp` and `BG` and `FG` to specify its default colour scheme.
 
+If you want the app listed in the menu, you should also add `main = YOURCLASS`.
+
 ```python
 from tidal import *
 from app import TextApp
@@ -144,6 +146,8 @@ class MyApp(TextApp):
     def on_activate(self):
         super().on_activate()
         self.window.println("Hello world!")
+
+main = MyApp
 ```
 
 ### App life cycle
@@ -253,6 +257,18 @@ $ minicom -D /dev/tty.usbmodem1234561
 >>> import myapp
 >>> myapp.main()
 ```
+
+### Adding to the menu
+To add the app to the startup menu, make sure you have `main = CLASSNAME` in the `__init__.py`
+
+You should add the app to the `apps` directory on the badge.
+
+```
+$ python3 micropython/tools/pyboard.py --no-soft-reset -d /dev/tty.usbmodem1234561 -f mkdir :/apps
+$ python3 micropython/tools/pyboard.py --no-soft-reset -d /dev/tty.usbmodem1234561 -f mkdir :/apps/MYAPP
+$ python3 micropython/tools/pyboard.py --no-soft-reset -d /dev/tty.usbmodem1234561 -f cp /path/to/__init__.py :/apps/MYAPP/__init__.py
+```
+Press back button on app launcher to force it to refresh the list (or reset the badge).
 
 ## Publishing to the Hatchery
 
