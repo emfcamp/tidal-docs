@@ -8,7 +8,7 @@
 6. Press "Make folder", second button from the left, and create a folder named `apps`
 7. Create a folder for your app in `apps`, e.g. `helloworld`
 8. Select your app folder and press "Make file", call this `__init__.py`
-9. Select `__init.py` - the filename/path should be `/apps/helloworld/__init__.py`
+9. Select `__init__.py` - the filename/path should be `/apps/helloworld/__init__.py`
 10. Paste the following code into the file:
     ```Python
     from tidal import *
