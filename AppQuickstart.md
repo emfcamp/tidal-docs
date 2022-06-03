@@ -49,7 +49,7 @@ The `display` object is how you write to the screen. It is a [`ST7789`](https://
 
 ```python
 from tidal import *
-import vga1_8x8 as font
+import vga2_8x8 as font
 display.fill(WHITE)
 x = font.WIDTH * 2 # Indent 2 chars
 y = (font.HEIGHT+1) * 5 # And 5 lines down
