@@ -49,7 +49,7 @@ The `display` object is how you write to the screen. It is a [`ST7789`](https://
 
 ```python
 from tidal import *
-import vga1_8x8 as font
+import vga2_8x8 as font
 display.fill(WHITE)
 x = font.WIDTH * 2 # Indent 2 chars
 y = (font.HEIGHT+1) * 5 # And 5 lines down
@@ -122,7 +122,7 @@ The badge firmware is pre-configured with the correct credentials to use during 
 
 ## Structure of an App
 
-To allow for apps to include resources or other modules, each app should be in a separate directory with its init code in an `__init__.py`:
+All apps should be placed in the `/apps` directory. You may need to create this first. To allow for apps to include resources or other modules, each app should be in a separate directory with its init code in an `__init__.py`:
 
 ```
 - myapp/
@@ -147,8 +147,10 @@ class MyApp(TextApp):
         super().on_activate()
         self.window.println("Hello world!")
 
+# Set the entrypoint for the app launher
 main = MyApp
 ```
+
 
 ### App life cycle
 
@@ -203,6 +205,7 @@ class MyApp(MenuApp):
         ("Item 2", lambda: print("Selected item 2!")),
     )
 
+main = MyApp
 ```
 
 `MenuApp` takes care of registering the appropriate `Button` callbacks such that the joystick can be used to navigate and select the menu items.
@@ -229,6 +232,8 @@ class MyScreen(Screen):
 class uGUIDemo(UguiApp):
     ROOT_SCREEN = MyScreen
 
+
+main = uGUIDemo
 ```
 
 Up/down/left/right/select and the back button are automatically configured, although micro-gui has no built-in support for the A or B buttons. Call `App.on_press()` to use them.
@@ -254,7 +259,8 @@ ls :/
          920 myapp.py
 
 $ minicom -D /dev/tty.usbmodem1234561
->>> import myapp
+
+import myapp
 >>> myapp.main()
 ```
 
