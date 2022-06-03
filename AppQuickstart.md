@@ -122,7 +122,7 @@ The badge firmware is pre-configured with the correct credentials to use during 
 
 ## Structure of an App
 
-To allow for apps to include resources or other modules, each app should be in a separate directory with its init code in an `__init__.py`:
+All apps should be placed in the `/apps` directory. You may need to create this first. To allow for apps to include resources or other modules, each app should be in a separate directory with its init code in an `__init__.py`:
 
 ```
 - myapp/
