@@ -144,7 +144,12 @@ class MyApp(TextApp):
     def on_activate(self):
         super().on_activate()
         self.window.println("Hello world!")
+
+
+# Set the entrypoint for the app launher
+main = MyApp
 ```
+
 
 ### App life cycle
 
@@ -199,6 +204,7 @@ class MyApp(MenuApp):
         ("Item 2", lambda: print("Selected item 2!")),
     )
 
+main = MyApp
 ```
 
 `MenuApp` takes care of registering the appropriate `Button` callbacks such that the joystick can be used to navigate and select the menu items.
@@ -225,6 +231,8 @@ class MyScreen(Screen):
 class uGUIDemo(UguiApp):
     ROOT_SCREEN = MyScreen
 
+
+main = uGUIDemo
 ```
 
 Up/down/left/right/select and the back button are automatically configured, although micro-gui has no built-in support for the A or B buttons. Call `App.on_press()` to use them.
