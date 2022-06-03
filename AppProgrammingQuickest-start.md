@@ -1,5 +1,8 @@
 # App Programming Quickest-start
 
+This shows you how to add code into a file, add it to main menu and run it.
+See https://github.com/emfcamp/tidal-docs/blob/main/AppQuickstart.md for more example code!
+
 1. Plug in your TiDAL in your computer with power off
 2. Turn on your TiDAL
 3. Open https://editor.badge.emfcamp.org/ in Google Chrome
@@ -19,6 +22,4 @@
     win.println("Hello world!")
     ```
 11. Press "Save file", the rightmost button
-12. Press Disconnect and see your app in the list on your TiDAL
-
-See https://github.com/emfcamp/tidal-docs/blob/main/AppQuickstart.md for more example code!
+12. Reset your TiDAL by pressing the button in the corner and see your app in the list on your TiDAL
