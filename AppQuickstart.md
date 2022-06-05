@@ -74,6 +74,8 @@ TextWindow may be instantiated separately, or your `App` subclass may construct 
 
 The native character set used by `ST7789` is [CP437](https://en.wikipedia.org/wiki/Code_page_437) so only a limited set of non-ASCII characters can be displayed. `TextWindow` takes care of converting Python strings to the appropriate format, so you normally shouldn't have to worry about it.
 
+For a more feature-rich UI API, see the section on [micro-gui](#micro-gui), below.
+
 ### Timers
 
 Use `App.after(time_ms, callback)` to queue a timer callback after a certain amount of milliseconds. The result is an object you can call `cancel()` on if you need to cancel the timer. These timers will wake the badge up from light sleep if necessary. Use `App.periodic()` if you want the timer to fire repeatedly. There are no restrictions on how many timers you can queue, unlike if you use `machine.Timer` which is not recommended because it's a much more complicated and nuanced API to use correctly.
@@ -119,6 +121,12 @@ Having Wi-Fi connected has a significant impact on battery life. Do not connect 
 The badge firmware is pre-configured with the correct credentials to use during EMF 2022. The "Wi-Fi Config" app can be used to connect to other networks after the event (or call `wifi.connect(ssid, password)` directly). 
 
 **Note:** Do not configure your badge as an access point during EMF 2022. This is [prohibited by the NOC team](https://wiki.emfcamp.org/wiki/Network/Rogue_Access_Points).
+
+### Power management
+
+The EMF 2022 badge has a small battery and therefore implements aggressive power management. Any time that your app's code isn't running and neither Wi-Fi nor USB are being used, the CPU is in lightsleep. This means (almost) all clocks are suspended and only timers or button presses can wake the CPU. This affects, for example, the LEDC PWM API - and because this is used to dim the standard micropython PWM API is not usable on the TiDAL badge (strictly speaking, this is a hardware limitation combined with micropython not exposing the ability to set the required clock source).
+
+In addition, the screen will switch off after a configurable time period (by default, 30 seconds).
 
 ## Structure of an App
 
