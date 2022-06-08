@@ -40,12 +40,12 @@ The backlight can be enabled without powering the LCD module on.
 
 to power on the display (this will also power on the backlight, but you can then turn it off again if you like):
 ```
->>> tidal.lcd_power_on();
+>>> tidal.lcd_power_on()
 ```
 
 to power off the display (this will also power off the backlight, but you can then turn it on again if you like):
 ```
->>> tidal.lcd_power_off();
+>>> tidal.lcd_power_off()
 ```
 
 When the display is off, it will retain the image stored, so when you switch it on again the same image that was there last time will be displayed.

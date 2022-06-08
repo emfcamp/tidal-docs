@@ -76,6 +76,21 @@ The native character set used by `ST7789` is [CP437](https://en.wikipedia.org/wi
 
 For a more feature-rich UI API, see the section on [micro-gui](#micro-gui), below.
 
+### PNG support
+
+Use the `lodepng` module to decode PNGs to a buffer compatible with our framebuffer format, then call `blit_buffer` to display. The example below assumes your PNG is saved to flash in the `/apps/MYAPP` directory. You can also pass a raw data buffer to `decode565` to do in-memory decoding, this may be useful when fetching images directly from the internet with eg `urequests`.
+
+```python
+import tidal
+import lodepng
+(w, h, buf) = lodepng.decode565("/apps/MYAPP/myimg.png")
+
+display = tidal.display # Or use self.display if in a TextWindow subclass, or self.window.display in an App
+x = 0
+y = 0
+display.blit_buffer(buf, x, y, w, h)
+```
+
 ### Timers
 
 Use `App.after(time_ms, callback)` to queue a timer callback after a certain amount of milliseconds. The result is an object you can call `cancel()` on if you need to cancel the timer. These timers will wake the badge up from light sleep if necessary. Use `App.periodic()` if you want the timer to fire repeatedly. There are no restrictions on how many timers you can queue, unlike if you use `machine.Timer` which is not recommended because it's a much more complicated and nuanced API to use correctly.
@@ -258,7 +273,7 @@ The MicroPython REPL is available by default on the USB port, eg `screen /dev/tt
 Prior to deploying apps for real, you can upload files to the board using `pyboard.py` and then test them via the REPL:
 
 ```
-$ cd Mk6-micropython-board
+$ cd TiDAL-Firmware
 $ python3 micropython/tools/pyboard.py --no-soft-reset -d /dev/tty.usbmodem1234561 -f cp /path/to/myapp.py :/myapp.py
 $ python3 micropython/tools/pyboard.py --no-soft-reset -d /dev/tty.usbmodem1234561 -f ls /
 ls :/
