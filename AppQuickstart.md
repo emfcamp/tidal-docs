@@ -32,7 +32,7 @@ There is a higher-level abstraction in `buttons.py` to allow you to register cal
 from tidal import *
 from buttons import Buttons
 but = Buttons()
-but.on_pressed(JOY_CENTRE, lambda: print("Button pressed!"))
+but.on_press(JOY_CENTRE, lambda: print("Button pressed!"))
 ```
 
 A `Buttons` instance is automatically created for you by `App` subclasses - call `self.buttons` (or `self.window.buttons`) in your `App` to access it. See [`Torch.on_start()`](https://github.com/emfcamp/TiDAL-Firmware/blob/main/modules/torch/__init__.py) for an example.
