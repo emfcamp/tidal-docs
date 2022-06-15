@@ -18,6 +18,8 @@ This case & all versions thereof are licenced under the [Hippocratic Licence](ht
 
 ## Tidal Case Chonky - By CuppaMatt
 
+![IMB_MyIAFV](https://user-images.githubusercontent.com/17907465/173811769-26d58493-bb32-4884-8b02-d691c8c85582.gif)
+
 Version History:
 - Version 6 published 15th June 2022
   - First good fit version
