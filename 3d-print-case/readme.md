@@ -16,3 +16,10 @@ Version History:
 
 This case & all versions thereof are licenced under the [Hippocratic Licence](https://firstdonoharm.dev/version/3/0/license/license.txt)
 
+## Tidal Case Chonky - By CuppaMatt
+
+Version History:
+- Version 6 published 15th June 2022
+  - First good fit version
+  - First public release
+  - STL & STEP files released
