@@ -32,6 +32,8 @@ TODO: Expansion developer guide
 
 [Hardware schematics and datasheets](https://github.com/emfcamp/TiDAL-Hardware)
 
+[Screen Replacement Guide](screenreplacementguide.md)
+
 TODO: Badge-compatible installation developer guide
 
 TODO: Badge firmware developer guide
