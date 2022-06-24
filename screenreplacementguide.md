@@ -1,3 +1,16 @@
+# Parts
+
+## Display Model
+
+The display part used for the TiDAL 2022 badge is the `LHS114TM-IG01` by Limito Technology. It also has a [datasheet available here](https://github.com/emfcamp/TiDAL-Hardware/blob/main/datasheets/ER-TFT1.14-1_Datasheet.pdf).
+
+## Sourcing / Purchasing
+
+The display part should be available to purchase here:
+- https://buydisplay.com/1-14-inch-tft-lcd-display-ips-panel-screen-135x240-for-smart-watch (Primary source, for bulk orders)
+- https://ebay.co.uk/itm/293392674769 (Should be the same product)
+
+# Instructions
 
 0. Use a thin object to get between the gluedot and the display from the non-cable side. Do not pry or pull, gently wiggle the screen away from the gluedot.
 1. Remove all traces of the gluedot that was holding the screen in place and disconnect the battery
